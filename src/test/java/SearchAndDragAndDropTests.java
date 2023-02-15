@@ -5,21 +5,22 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class SearchAndDragAndDrop {
+public class SearchAndDragAndDropTests {
 
     @Test
-    void openEnterprise() {
+    void searchTest() {
         open("https://github.com");
         $(byText("Solutions")).hover();
         $(byText("Enterprise")).click();
-        $(".application-main ").shouldHave(text("Build like the best"));
+        $("main h1").shouldHave(text("Build like the best"));
     }
 
     @Test
-    void dragAndDrop() {
+    void dragAndDropTest() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
         $("#column-a").dragAndDropTo($("#column-b"));
         $("#column-a").shouldHave(text("B"));
+        $("#column-b").shouldHave(text("A"));
     }
 
 }
